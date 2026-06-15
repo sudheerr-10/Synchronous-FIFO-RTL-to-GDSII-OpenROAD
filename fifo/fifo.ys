@@ -1,0 +1,38 @@
+# Read RTL
+read_verilog fifo.v
+
+# Set top module
+hierarchy -check -top fifo_sync
+
+# Convert always blocks/processes
+proc
+
+# Optimize
+opt
+
+# Handle memory arrays (important for FIFO)
+memory
+
+# Optimize again
+opt
+
+# Technology mapping
+techmap
+
+# Optimize again
+opt
+
+# Map flip-flops to Nangate library
+dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+
+# Map combinational logic to Nangate library
+abc -liberty NangateOpenCellLibrary_typical.lib
+
+# Remove unused logic
+clean
+
+# Report statistics
+stat
+
+# Write synthesized netlist
+write_verilog -noattr fifo_netlist.v
