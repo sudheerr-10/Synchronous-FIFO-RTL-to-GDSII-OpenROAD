@@ -1,0 +1,115 @@
+Startpoint: rst_n (input port clocked by clk)
+Endpoint: _406_ (recovery check against rising-edge clock clk)
+Path Group: asynchronous
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock clk (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   1.00    1.00 ^ input external delay
+   0.00    1.00 ^ rst_n (in)
+   0.00    1.00 ^ _406_/RN (DFFR_X1)
+           1.00   data arrival time
+
+  10.00   10.00   clock clk (rise edge)
+   0.00   10.00   clock network delay (ideal)
+   0.00   10.00   clock reconvergence pessimism
+          10.00 ^ _406_/CK (DFFR_X1)
+   0.05   10.05   library recovery time
+          10.05   data required time
+---------------------------------------------------------
+          10.05   data required time
+          -1.00   data arrival time
+---------------------------------------------------------
+           9.05   slack (MET)
+
+
+Startpoint: wr_en (input port clocked by clk)
+Endpoint: _382_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock clk (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   1.00    1.00 ^ input external delay
+   0.00    1.00 ^ wr_en (in)
+   0.02    1.02 v _238_/ZN (NAND2_X1)
+   0.13    1.15 ^ _259_/ZN (NOR4_X1)
+   0.07    1.22 v _359_/ZN (NAND2_X1)
+   0.06    1.28 v _366_/Z (MUX2_X1)
+   0.00    1.28 v _382_/D (DFF_X1)
+           1.28   data arrival time
+
+  10.00   10.00   clock clk (rise edge)
+   0.00   10.00   clock network delay (ideal)
+   0.00   10.00   clock reconvergence pessimism
+          10.00 ^ _382_/CK (DFF_X1)
+  -0.04    9.96   library setup time
+           9.96   data required time
+---------------------------------------------------------
+           9.96   data required time
+          -1.28   data arrival time
+---------------------------------------------------------
+           8.68   slack (MET)
+
+
+Startpoint: rst_n (input port clocked by clk)
+Endpoint: _406_ (removal check against rising-edge clock clk)
+Path Group: asynchronous
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock clk (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   1.00    1.00 ^ input external delay
+   0.00    1.00 ^ rst_n (in)
+   0.00    1.00 ^ _406_/RN (DFFR_X1)
+           1.00   data arrival time
+
+   0.00    0.00   clock clk (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   0.00    0.00   clock reconvergence pessimism
+           0.00 ^ _406_/CK (DFFR_X1)
+   0.18    0.18   library removal time
+           0.18   data required time
+---------------------------------------------------------
+           0.18   data required time
+          -1.00   data arrival time
+---------------------------------------------------------
+           0.82   slack (MET)
+
+
+Startpoint: _406_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _406_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock clk (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   0.00    0.00 ^ _406_/CK (DFFR_X1)
+   0.07    0.07 ^ _406_/QN (DFFR_X1)
+   0.04    0.11 ^ _342_/Z (MUX2_X1)
+   0.00    0.11 ^ _406_/D (DFFR_X1)
+           0.11   data arrival time
+
+   0.00    0.00   clock clk (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   0.00    0.00   clock reconvergence pessimism
+           0.00 ^ _406_/CK (DFFR_X1)
+   0.01    0.01   library hold time
+           0.01   data required time
+---------------------------------------------------------
+           0.01   data required time
+          -0.11   data arrival time
+---------------------------------------------------------
+           0.10   slack (MET)
+
+
+tns max 0.00
+wns max 0.00
